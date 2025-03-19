@@ -2,36 +2,35 @@ const express=require("express")
 
 const app=express()
 
-app.use("/user",(req,res)=>{
-    res.send("eeeeeeeeeehhhhheeeeee")
-})
-app.get("/user",(req,res)=>{
-    res.send({"firstName":"vijay","secondName":"Anand"})
-})
 
-app.post("/user",(req,res)=>{
-    res.send("insert successfully")
-})
-app.put("/user",(req,res)=>{
-    res.send("updated successfully")
-})
+app.use("/admin",(req,res,next)=>{  
+    console.log("checking token")   
+    const token="xyz"
+    if (token==="xyz") {
+        next()
+    }else{
+        res.send("unauthorized access")
+    }
+    // x
+    }    
+)
+app.get("/admin/allUser",(req,res,next)=>{     
+    // console.log("2nd response")
+    res.send("Deleted a user")    
+  
+    }    
+)
+app.get("/admin/deleteUser",(req,res,next)=>{     
+    console.log("2nd response")
+    res.send("Deleted a user")    
 
-app.delete("/user",(req,res)=>{
-    res.send("deleted")
-})
-// app.use("/",(req,res)=>{
-//     res.send("'default' from the server nodemon")
-// })
-// app.use("/test",(req,res)=>{
-//     res.send("'test' from the server nodemon")
-// })
+    }    
+)
 
-// // app.use("/hello/2",(req,res)=>{
-// //     res.send("'hello 2'  ")
-// // })
-// app.use("/hello",(req,res)=>{
-//     res.send("'hello' from the server ")
-// })
+
+// app.use("/route",[rh1,rh2,rh3,rh4,rh5])
+
+
 app.listen(1818,()=>{
     console.log("Server is Successfully learning in port 1818")
 })
